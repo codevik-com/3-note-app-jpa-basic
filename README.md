@@ -9,7 +9,7 @@ See here for more informations:
 
 - Java 8
 - Maven > 3.0
-- Rest Client Postman/ARC
+- Rest Client Postman/ARC : https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
 
 #### From terminal
 
@@ -27,7 +27,7 @@ Import as *Existing Maven Project* and run it as *Spring Boot App*.
 - Run the application and go on http://localhost:8080/
 - Use the following urls to invoke controllers methods and see the interactions
   with the Note List:
-  As we are not using DB the data will be stored in the Memory so Each time you run, You have to add values again
+  As we are not using DB the data will be stored in the Memory so each time you run/restart the server, You will need to add the values again.
   Use Rest Client like Postman or ARC to run the links.
   Body content-type: `application/x-www-form-urlencoded`
     * POST `/notes`: Body `note=note value` create a new note with an auto-generated id and time and note as passed values.
