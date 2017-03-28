@@ -12,9 +12,9 @@ import java.util.List;
 public interface INoteService {
 
     Note add(Note note) ;
-    Note delete(int id) ;
-    Note update(int id, String note);
-    Note getById(int id);
+    Note delete(long id) ;
+    Note update(long id, String note);
+    Note getById(long id);
     List<Note> getAll();
-    int count();
+    long count();
 }

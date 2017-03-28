@@ -1,7 +1,8 @@
 package com.codevik.services;
 
 import com.codevik.models.Note;
-import com.codevik.models.NoteDAO;
+import com.codevik.models.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,37 +13,39 @@ import java.util.List;
 @Service
 public class NoteServiceImpl implements INoteService {
 
-    NoteDAO dao = new NoteDAO();
+    @Autowired
+    NoteRepository dao;
 
     @Override
     public Note add(Note note) {
-        return dao.create(note);
+        return dao.save(note);
     }
 
     @Override
-    public Note delete(int id) {
-        Note n = dao.getById(id);
-        dao.delete(id);
+    public Note delete(long id) {
+        Note n = dao.findOne(id);
+        if(n!=null)
+            dao.delete(id);
         return n;
     }
 
     @Override
-    public Note update(int id, String note) {
-        return dao.update(new Note(id, note));
+    public Note update(long id, String note) {
+        return dao.save(new Note(id, note));
     }
 
     @Override
-    public Note getById(int id) {
-        return dao.getById(id);
+    public Note getById(long id) {
+        return dao.findOne(id);
     }
 
     @Override
     public List<Note> getAll() {
-        return dao.getAll();
+        return dao.findAll();
     }
 
     @Override
-    public int count() {
+    public long count() {
         return dao.count();
     }
 

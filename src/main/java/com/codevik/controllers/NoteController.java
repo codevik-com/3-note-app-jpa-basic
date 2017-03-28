@@ -3,11 +3,14 @@ package com.codevik.controllers;
 import com.codevik.models.Note;
 import com.codevik.services.INoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -38,6 +41,14 @@ public class NoteController {
     Note addNote(String note) {
         return service.add(new Note(service.count() + 1, note));
     }
+
+    @RequestMapping(value = "/note", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    Note addNoteJson(@RequestBody Note note) {
+        System.out.print(note);
+        return service.add(note);
+    }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
